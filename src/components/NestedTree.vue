@@ -27,7 +27,7 @@ const buildTree = (array) => {
     array.forEach(item => {
         const node = nodeMap[item.id];
         if (item.parent_id !== null) {
-            nodeMap[item.parent_id].children.push(node);
+            nodeMap[item.parent_id]?.children.push(node);
         } else {
             result.push(node);
         }
@@ -41,6 +41,7 @@ onMounted(async () => {
         return res.data
     }).catch((err) => { console.log(err) })
     const copyData = JSON.parse(JSON.stringify(data));
+    console.log(copyData)
     parentList.value = buildTree(copyData);
 })
 </script>
